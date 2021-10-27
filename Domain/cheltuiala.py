@@ -1,65 +1,67 @@
-def creeaza_cheltuiala(numar_apartament, suma, data, tipul):
+def creeaza_cheltuiala(id, numar_apartament, suma, data, tipul):
     """
     Creeaza un dictionar ce reprezinta o cheltuiala
+    :param id: id-ul cheltuielii
     :param numar_apartament: string
     :param suma: float
     :param data: string
     :param tipul: string
     :return:
     """
-    return {
-        "numar_apartament": numar_apartament,
-        "suma": suma,
-        "data": data,
-        "tipul": tipul
+    return [("id", id),("numar_apartament", numar_apartament),("suma",suma),
+            ("data""",data),("tipul", tipul)]
 
-    }
+
+def get_id(cheltuiala):
+    """
+    Returneaza id-ul cheltuielii
+    :param cheltuiala: cheltuiala careia vrem sa-i aflam id-ul
+    :return: id-ul cheltuielii
+    """
+    return cheltuiala[0][1]
+
 
 def get_numar_apartament(cheltuiala):
     """
     Returneaza numarul apartamentului unei cheltuieli
-    :param cheltuiala: dictionatul ce contine o cheltuiala
+    :param cheltuiala: cheltuiala careia vrem sa-i aflam numarul de apartament
     :return: numarul apartamentului cheltuielii
     """
-    return cheltuiala["numar_apartament"]
+    return cheltuiala[1][1]
 
 
 def get_suma(cheltuiala):
     """
     Returneaza suma cheltuielii
-    :param cheltuiala: dictionarul ce contine o cheltuiala
+    :param cheltuiala: cheltuiala careia vrem sa-i aflam suma
     :return: suma cheltuielii
     """
-    return cheltuiala["suma"]
+    return cheltuiala[2][1]
 
 
 def get_data(cheltuiala):
     """
     Returneaza data cheltuielii
-    :param cheltuiala: dictionarul ce contine o cheltuiala
+    :param cheltuiala: cheltuiala careia vrem sa-i aflam data
     :return: data cheltuielii
     """
-    return cheltuiala["data"]
+    return cheltuiala[3][1]
 
 
 def get_tipul(cheltuiala):
     """
     Returneaza tipul cheltuielii
-    :param cheltuiala: dictionarul ce contine o cheltuiala
+    :param cheltuiala: dcheltuiala careia vrem sa-i aflam tipul
     :return: tipul cheltuielii
     """
-    return cheltuiala["tipul"]
+    return cheltuiala[4][1]
 
 
 def to_string(cheltuiala):
     """
     Returneaza cheltuiala ca string
-    :param cheltuiala: dictionarul ce contine o cheltuiala
+    :param cheltuiala: cheltuiala careia vrem sa-i aflam datele
     :return: cheltuiala ca string
     """
-    return "Numar apartament: {}; Suma: {}; Data: {}; Tipul: {}".format(
-        get_numar_apartament(cheltuiala),
-        get_suma(cheltuiala),
-        get_data(cheltuiala),
-        get_tipul(cheltuiala)
-    )
+    return f"Id: {get_id(cheltuiala)}; Numar apartament: {get_numar_apartament(cheltuiala)}; " \
+           f"Suma: {get_suma(cheltuiala)}; Data: {get_data(cheltuiala)}; Tipul: {get_tipul(cheltuiala)}"
