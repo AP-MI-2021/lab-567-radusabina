@@ -9,6 +9,7 @@ def print_meniu():
     print("a. Afisare cheltuieli")
     print("x. Iesire")
 
+
 def ui_adauga_cheltuiala(lista):
     id = int(input("Dati id-ul cheltuielii: "))
     numar_apartament = input("Dati numarul apartamentului: ")
@@ -23,7 +24,6 @@ def ui_sterge_cheltuiala(lista):
     lista = sterge_cheltuiala(id_de_sters, lista)
     print("Stergerea a fost efectuata cu succes")
     return lista
-
 
 
 def ui_modifica_cheltuiala(lista):

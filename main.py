@@ -13,7 +13,6 @@ from Tests.test_all import test_all
 from UI.console import run_menu
 
 
-
 def main():
     test_all()
     run_menu([])
@@ -21,5 +20,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

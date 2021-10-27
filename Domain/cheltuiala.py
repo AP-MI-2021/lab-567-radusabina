@@ -8,8 +8,8 @@ def creeaza_cheltuiala(id, numar_apartament, suma, data, tipul):
     :param tipul: string
     :return:
     """
-    return [("id", id),("numar_apartament", numar_apartament),("suma",suma),
-            ("data""",data),("tipul", tipul)]
+    return [("id", id), ("numar_apartament", numar_apartament), ("suma", suma),
+            ("data""", data), ("tipul", tipul)]
 
 
 def get_id(cheltuiala):

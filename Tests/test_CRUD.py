@@ -17,7 +17,7 @@ def test_adauga_cheltuiala():
 def test_sterge_cheltuiala():
     lista = []
     lista = adauga_cheltuiala(1, 13, 150, "06.10.2021", "canal", lista)
-    lista = adauga_cheltuiala(2,45, 200, "23.10.2021", "intretinere", lista)
+    lista = adauga_cheltuiala(2, 45, 200, "23.10.2021", "intretinere", lista)
 
     lista = sterge_cheltuiala(1, lista)
 
@@ -42,3 +42,14 @@ def test_modifica_cheltuiala():
     assert get_suma(cheltuiala_nemodificata) == 234
     assert get_data(cheltuiala_nemodificata) == "12.02.2021"
     assert get_tipul(cheltuiala_nemodificata) == "canal"
+
+
+def test_get_by_id():
+    lista = []
+    lista = adauga_cheltuiala(1, 13, 150, "06.10.2021", "canal", lista)
+    lista = adauga_cheltuiala(2, 45, 200, "23.10.2021", "intretinere", lista)
+
+    assert get_by_id(1, lista) == [("id", 1), ("numar_apartament", 13), ("suma", 150), ("data", "06.10.2021"),
+                                   ("tipul", "canal")]
+    assert get_by_id(2,lista) == [("id", 2), ("numar_apartament", 45), ("suma", 200), ("data", "23.10.2021"),
+                                   ("tipul", "intretinere")]

@@ -4,6 +4,7 @@ from Domain.cheltuiala import creeaza_cheltuiala, get_numar_apartament, get_id
 def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
     """
     adauga o cheltuiala intr-o lista
+    :param lista: lista de cheltuieli
     :param id: int
     :param numar_apartament: string
     :param suma: float
