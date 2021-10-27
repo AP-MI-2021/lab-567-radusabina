@@ -51,5 +51,5 @@ def test_get_by_id():
 
     assert get_by_id(1, lista) == [("id", 1), ("numar_apartament", 13), ("suma", 150), ("data", "06.10.2021"),
                                    ("tipul", "canal")]
-    assert get_by_id(2,lista) == [("id", 2), ("numar_apartament", 45), ("suma", 200), ("data", "23.10.2021"),
+    assert get_by_id(2, lista) == [("id", 2), ("numar_apartament", 45), ("suma", 200), ("data", "23.10.2021"),
                                    ("tipul", "intretinere")]
