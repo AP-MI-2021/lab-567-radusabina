@@ -1,5 +1,5 @@
 from Domain.cheltuiala import get_numar_apartament, get_suma, get_data, get_tipul, get_id
-from Logic.CRUD import adauga_cheltuiala, sterge_cheltuiala, modifica_cheltuiala, get_by_id
+from Logic.CRUD import adauga_cheltuiala, sterge_cheltuiala, modifica_cheltuiala, get_by_id, get_by_numar_apartament
 
 
 def test_adauga_cheltuiala():
@@ -53,3 +53,19 @@ def test_get_by_id():
                                    ("tipul", "canal")]
     assert get_by_id(2, lista) == [("id", 2), ("numar_apartament", 45), ("suma", 200), ("data", "23.10.2021"),
                                    ("tipul", "intretinere")]
+    assert get_by_id(5, lista) is None
+
+
+def test_get_by_numar_apartament():
+    lista = []
+    lista = adauga_cheltuiala(1, 13, 150, "06.10.2021", "canal", lista)
+    lista = adauga_cheltuiala(2, 45, 200, "23.10.2021", "intretinere", lista)
+    lista = adauga_cheltuiala(3, 45, 89.45, "12.03.2021", "canal", lista)
+
+    assert get_by_numar_apartament(45, lista) == [[("id", 2), ("numar_apartament", 45), ("suma", 200),
+                                                   ("data", "23.10.2021"),  ("tipul", "intretinere")], [("id", 3),
+                                                  ("numar_apartament", 45), ("suma", 89.45), ("data", "12.03.2021"),
+                                                  ("tipul", "canal")]]
+    assert get_by_numar_apartament(13, lista) == [[("id", 1), ("numar_apartament", 13), ("suma", 150),
+                                                   ("data", "06.10.2021"), ("tipul", "canal")]]
+    assert get_by_numar_apartament(4, lista) == []

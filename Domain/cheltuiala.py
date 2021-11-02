@@ -6,10 +6,10 @@ def creeaza_cheltuiala(id, numar_apartament, suma, data, tipul):
     :param suma: float
     :param data: string
     :param tipul: string
-    :return:
+    :return: o lista ce contine o cheltuiala
     """
     return [("id", id), ("numar_apartament", numar_apartament), ("suma", suma),
-            ("data""", data), ("tipul", tipul)]
+            ("data", data), ("tipul", tipul)]
 
 
 def get_id(cheltuiala):

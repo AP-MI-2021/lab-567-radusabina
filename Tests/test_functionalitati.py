@@ -1,0 +1,69 @@
+from Domain.cheltuiala import get_suma, get_data, get_tipul
+from Logic.CRUD import adauga_cheltuiala, get_by_id, get_by_numar_apartament
+from Logic.functionalitati import sterge_toate_cheltuielile_apartament, adauga_valoare_data, \
+    cea_mai_mare_cheltuiala_dupa_tip, ordonare_descrescator_cheltuieli
+
+
+def test_sterge_toate_cheltuielile_apartament():
+    lista = []
+    lista = adauga_cheltuiala(1, 13, 150, "06.10.2021", "canal", lista)
+    lista = adauga_cheltuiala(2, 45, 200, "23.10.2021", "intretinere", lista)
+    lista = adauga_cheltuiala(3, 45, 89.45, "12.03.2021", "canal", lista)
+
+    lista = sterge_toate_cheltuielile_apartament(45, lista)
+    assert len(lista) == 1
+    assert get_by_numar_apartament(45, lista) == []
+    assert get_by_numar_apartament(13, lista) == [[("id", 1), ("numar_apartament", 13), ("suma", 150),
+                                                   ("data", "06.10.2021"), ("tipul", "canal")]]
+
+
+def test_adauga_valoare_data():
+    lista = []
+    lista = adauga_cheltuiala(1, 13, 150, "12.03.2021", "alte cheltuieli", lista)
+    lista = adauga_cheltuiala(2, 45, 200, "23.10.2021", "intretinere", lista)
+    lista = adauga_cheltuiala(3, 45, 89.45, "12.03.2021", "canal", lista)
+
+    lista = adauga_valoare_data("12.03.2021", 45.50, lista)
+    assert len(lista) == 3
+    cheltuiala_modificata_1 = get_by_id(1, lista)
+    assert get_suma(cheltuiala_modificata_1) == 195.50
+    assert get_data(cheltuiala_modificata_1) == "12.03.2021"
+    assert get_tipul(cheltuiala_modificata_1) == "alte cheltuieli"
+    cheltuiala_modificata_2 = get_by_id(3, lista)
+    assert get_suma(cheltuiala_modificata_2) == 134.95
+    assert get_data(cheltuiala_modificata_2) == "12.03.2021"
+    cheltuiala_nemodificata = get_by_id(2, lista)
+    assert get_suma(cheltuiala_nemodificata) == 200
+    assert get_data(cheltuiala_nemodificata) == "23.10.2021"
+
+
+def test_cea_mai_mare_cheltuiala_dupa_tip():
+    lista = []
+    lista = adauga_cheltuiala(1, 13, 150, "12.03.2021", "alte cheltuieli", lista)
+    lista = adauga_cheltuiala(2, 90, 200, "23.10.2021", "intretinere", lista)
+    lista = adauga_cheltuiala(3, 45, 89.45, "4.10.2021", "canal", lista)
+    lista = adauga_cheltuiala(4, 87, 78.90, "7.12.2021", "canal", lista)
+    lista = adauga_cheltuiala(5, 56, 567.78, "14.01.2020", "intretinere", lista)
+    lista = adauga_cheltuiala(6, 17, 70, "31.12.2020", "alte cheltuieli", lista)
+
+    rezultat = cea_mai_mare_cheltuiala_dupa_tip(lista)
+
+    assert len(rezultat) == 3
+    assert rezultat["canal"] == 89.45
+    assert rezultat["intretinere"] == 567.78
+    assert rezultat["alte cheltuieli"] == 150
+
+
+def test_ordonare_descrescator_cheltuieli():
+    lista = []
+    lista = adauga_cheltuiala(1, 13, 150, "12.03.2021", "alte cheltuieli", lista)
+    lista = adauga_cheltuiala(2, 90, 200, "23.10.2021", "intretinere", lista)
+    lista = adauga_cheltuiala(3, 45, 89.45, "4.10.2021", "canal", lista)
+
+    lista = ordonare_descrescator_cheltuieli(lista)
+    assert lista[0] == [("id", 2), ("numar_apartament", 90), ("suma", 200),
+                        ("data", "23.10.2021"), ("tipul", "intretinere")]
+    assert lista[1] == [("id", 1), ("numar_apartament", 13), ("suma", 150),
+                        ("data", "12.03.2021"), ("tipul", "alte cheltuieli")]
+    assert lista[2] == [("id", 3), ("numar_apartament", 45), ("suma", 89.45),
+                        ("data", "4.10.2021"), ("tipul", "canal")]

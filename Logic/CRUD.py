@@ -18,15 +18,29 @@ def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
 
 def get_by_id(id, lista):
     """
-    Gaseste o cheltuiala cu numarul de apartament dat intr-o lista
+    Gaseste o cheltuiala cu id-ul dat intr-o lista
     :param id: id-ul apartamentului
     :param lista: lista de cheltuieli
-    :return: cheltuiala cu numarul de apartament dat din lista, sau None daca aceasta nu exista
+    :return: cheltuiala cu id-ul dat din lista, sau None daca aceasta nu exista
     """
     for cheltuiala in lista:
         if get_id(cheltuiala) == id:
             return cheltuiala
     return None
+
+
+def get_by_numar_apartament(numar_apartament, lista):
+    """
+    Gaseste o cheltuiala cu numarul de apartament dat intr-o lista
+    :param numar_apartament: numarul de apartament al cheltuielii
+    :param lista: lista de cheltuieli
+    :return: cheltuiala cu numarul de apartament dat din lista, sau None in caz cobtrar
+    """
+    lista_noua = []
+    for cheltuiala in lista:
+        if get_numar_apartament(cheltuiala) == numar_apartament:
+            lista_noua.append(cheltuiala)
+    return lista_noua
 
 
 def sterge_cheltuiala(id, lista):
