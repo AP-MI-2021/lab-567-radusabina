@@ -15,7 +15,8 @@ from UI.console import run_menu
 
 def main():
     test_all()
-    run_menu([])
+    lista = []
+    run_menu(lista)
 
 
 if __name__ == "__main__":

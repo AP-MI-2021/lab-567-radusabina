@@ -36,7 +36,7 @@ def get_suma(cheltuiala):
     :param cheltuiala: cheltuiala careia vrem sa-i aflam suma
     :return: suma cheltuielii
     """
-    return cheltuiala[2][1]
+    return float(cheltuiala[2][1])
 
 
 def get_data(cheltuiala):

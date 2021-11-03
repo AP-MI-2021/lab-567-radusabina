@@ -1,7 +1,7 @@
-from Domain.cheltuiala import get_suma, get_data, get_tipul
+from Domain.cheltuiala import get_suma, get_data, get_tipul, get_id
 from Logic.CRUD import adauga_cheltuiala, get_by_id, get_by_numar_apartament
 from Logic.functionalitati import sterge_toate_cheltuielile_apartament, adauga_valoare_data, \
-    cea_mai_mare_cheltuiala_dupa_tip, ordonare_descrescator_cheltuieli
+    cea_mai_mare_cheltuiala_dupa_tip, ordonare_descrescator_cheltuieli_dupa_suma
 
 
 def test_sterge_toate_cheltuielile_apartament():
@@ -49,18 +49,18 @@ def test_cea_mai_mare_cheltuiala_dupa_tip():
     rezultat = cea_mai_mare_cheltuiala_dupa_tip(lista)
 
     assert len(rezultat) == 3
-    assert rezultat["canal"] == 89.45
-    assert rezultat["intretinere"] == 567.78
-    assert rezultat["alte cheltuieli"] == 150
+    assert get_id(rezultat["canal"]) == 3
+    assert get_id(rezultat["intretinere"]) == 5
+    assert get_id(rezultat["alte cheltuieli"]) == 1
 
 
-def test_ordonare_descrescator_cheltuieli():
+def test_ordonare_descrescator_cheltuieli_dupa_suma():
     lista = []
     lista = adauga_cheltuiala(1, 13, 150, "12.03.2021", "alte cheltuieli", lista)
     lista = adauga_cheltuiala(2, 90, 200, "23.10.2021", "intretinere", lista)
     lista = adauga_cheltuiala(3, 45, 89.45, "4.10.2021", "canal", lista)
 
-    lista = ordonare_descrescator_cheltuieli(lista)
+    lista = ordonare_descrescator_cheltuieli_dupa_suma(lista)
     assert lista[0] == [("id", 2), ("numar_apartament", 90), ("suma", 200),
                         ("data", "23.10.2021"), ("tipul", "intretinere")]
     assert lista[1] == [("id", 1), ("numar_apartament", 13), ("suma", 150),

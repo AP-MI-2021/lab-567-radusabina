@@ -1,7 +1,7 @@
 from Domain.cheltuiala import to_string
 from Logic.CRUD import adauga_cheltuiala, sterge_cheltuiala, modifica_cheltuiala
 from Logic.functionalitati import sterge_toate_cheltuielile_apartament, adauga_valoare_data, \
-    cea_mai_mare_cheltuiala_dupa_tip, ordonare_descrescator_cheltuieli
+    cea_mai_mare_cheltuiala_dupa_tip, ordonare_descrescator_cheltuieli_dupa_suma
 
 
 def print_meniu():
@@ -87,7 +87,7 @@ def ui_sterge_toate_cheltuielile_apartament(lista):
     :return: lista fara cheltuielile pentru apartamentul specificat
     """
     try:
-        numar_apartament = input("Dati numarul apartamentului pentr care doriti sa stergeti toate cheltuielile: ")
+        numar_apartament = input("Dati numarul apartamentului pentru care doriti sa stergeti toate cheltuielile: ")
         print("Stergerea a fost efectuata cu succes !")
         return sterge_toate_cheltuielile_apartament(numar_apartament, lista)
     except ValueError as ve:
@@ -122,7 +122,7 @@ def ui_cea_mai_mare_cheltuiala_dupa_tip(lista):
         return lista
     rezultat = cea_mai_mare_cheltuiala_dupa_tip(lista)
     for tip in rezultat:
-        print(f"Cheltuiala {tip} are valoarea maxima de {rezultat[tip]} lei")
+        print(f"Tipul {tip} are cheltuiala cu valoarea maxima: {rezultat[tip]}")
 
 
 def ui_ordonare_descrescator_cheltuieli_dupa_suma(lista):
@@ -135,7 +135,7 @@ def ui_ordonare_descrescator_cheltuieli_dupa_suma(lista):
         print("Nu exista cheltuieli in lista !")
         return lista
     else:
-        return show_all(ordonare_descrescator_cheltuieli(lista))
+        return show_all(ordonare_descrescator_cheltuieli_dupa_suma(lista))
 
 
 def run_menu(lista):

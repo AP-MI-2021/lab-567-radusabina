@@ -12,6 +12,10 @@ def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
     :param tipul: string
     :return: o lista continand atat elemente vechi, cat si noua cheltuiala
     """
+    if get_by_id(id, lista) is not None:
+        raise ValueError("Id-ul exista deja !")
+    if tipul not in ["intretinere", "canal", "alte cheltuieli"]:
+        raise ValueError("Tipul cheltuielii trebuie sa fie intretinere / canal / alte cheltuieli")
     cheltuiala = creeaza_cheltuiala(id, numar_apartament, suma, data, tipul)
     return lista + [cheltuiala]
 

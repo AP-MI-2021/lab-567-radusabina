@@ -46,14 +46,14 @@ def cea_mai_mare_cheltuiala_dupa_tip(lista):
         tipul = get_tipul(cheltuiala)
         suma = get_suma(cheltuiala)
         if tipul in rezultat:
-            if suma > rezultat[tipul]:
-                rezultat[tipul] = suma
+            if suma > get_suma(rezultat[tipul]):
+                rezultat[tipul] = cheltuiala
         else:
-            rezultat[tipul] = suma
+            rezultat[tipul] = cheltuiala
     return rezultat
 
 
-def ordonare_descrescator_cheltuieli(lista):
+def ordonare_descrescator_cheltuieli_dupa_suma(lista):
     """
     Ordoneaza cheltuielile descrescător după sumă.
     :param lista: lista de cheltuieli
