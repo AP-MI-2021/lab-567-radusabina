@@ -54,6 +54,8 @@ def sterge_cheltuiala(id, lista):
     :param lista: lista de cheltuieli
     :return: o lista de cheltuieli fara cheltuiala care are numarul apartamentului dat
     """
+    if get_by_id(id, lista) is None:
+        raise ValueError("Nu exista o cheltuiala cu id-ul dat !")
     rezultat = []
     for cheltuiala in lista:
         if get_id(cheltuiala) != id:
@@ -72,6 +74,8 @@ def modifica_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
     :param lista: lista cu cheltuieli
     :return: lista modificata
     """
+    if get_by_id(id, lista) is None:
+        raise ValueError("Nu exista o cheltuiala cu id-ul dat !")
     lista_noua = []
     for cheltuiala in lista:
         if get_id(cheltuiala) == id:
