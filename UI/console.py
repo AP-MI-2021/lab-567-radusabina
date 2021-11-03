@@ -2,6 +2,7 @@ from Domain.cheltuiala import to_string
 from Logic.CRUD import adauga_cheltuiala, sterge_cheltuiala, modifica_cheltuiala
 from Logic.functionalitati import sterge_toate_cheltuielile_apartament, adauga_valoare_data, \
     cea_mai_mare_cheltuiala_dupa_tip, ordonare_descrescator_cheltuieli_dupa_suma
+from UI.console_line_command import run_new_menu
 
 
 def print_meniu():
@@ -17,6 +18,7 @@ def print_meniu():
     print("7. Ordoneaza cheltuielile descrescător după sumă.")
     print("a. Afisare cheltuieli")
     print("x. Iesire")
+    print("y. Console line command")
 
 
 def ui_adauga_cheltuiala(lista):
@@ -159,5 +161,7 @@ def run_menu(lista):
             show_all(lista)
         elif optiune.lower() == "x":
             break
+        elif optiune.lower() == "y":
+            run_new_menu(lista)
         else:
             print("Optiune invalida ! Reincercati..")
