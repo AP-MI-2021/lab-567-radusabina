@@ -3,7 +3,7 @@ from Domain.cheltuiala import creeaza_cheltuiala, get_numar_apartament, get_id
 
 def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
     """
-    adauga o cheltuiala intr-o lista
+    Adauga o cheltuiala intr-o lista
     :param lista: lista de cheltuieli
     :param id: int
     :param numar_apartament: string
@@ -23,7 +23,7 @@ def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
 def get_by_id(id, lista):
     """
     Gaseste o cheltuiala cu id-ul dat intr-o lista
-    :param id: id-ul apartamentului
+    :param id: id-ul cheltuielii
     :param lista: lista de cheltuieli
     :return: cheltuiala cu id-ul dat din lista, sau None daca aceasta nu exista
     """
@@ -38,7 +38,7 @@ def get_by_numar_apartament(numar_apartament, lista):
     Gaseste o cheltuiala cu numarul de apartament dat intr-o lista
     :param numar_apartament: numarul de apartament al cheltuielii
     :param lista: lista de cheltuieli
-    :return: cheltuiala cu numarul de apartament dat din lista, sau None in caz cobtrar
+    :return: cheltuiala cu numarul de apartament dat din lista, sau None in caz contrar
     """
     lista_noua = []
     for cheltuiala in lista:
@@ -49,7 +49,7 @@ def get_by_numar_apartament(numar_apartament, lista):
 
 def sterge_cheltuiala(id, lista):
     """
-    Sterge un apartament cu numarul dat
+    Sterge un apartament cu id-ul dat
     :param id: id-ul apartamentului care se va sterge
     :param lista: lista de cheltuieli
     :return: o lista de cheltuieli fara cheltuiala care are numarul apartamentului dat
@@ -65,7 +65,7 @@ def sterge_cheltuiala(id, lista):
 
 def modifica_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
     """
-    Modifica o cheltuiala cu numarul apartamentului dat
+    Modifica o cheltuiala cu id-ul dat
     :param id: id-ul cheltuielii
     :param numar_apartament: numarul de apartament al cheltuielii
     :param suma: suma cheltuielii

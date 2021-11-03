@@ -28,7 +28,7 @@ def ui_adauga_cheltuiala(lista):
     try:
         id = int(input("Dati id-ul cheltuielii: "))
         numar_apartament = input("Dati numarul apartamentului: ")
-        suma = input("Dati suma: ")
+        suma = float(input("Dati suma: "))
         data = input("Dati data (DD.MM.YYYY): ")
         tipul = input("Dati tipul (intretinere, canal, alte cheltuieli): ")
         return adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista)
@@ -88,7 +88,6 @@ def ui_sterge_toate_cheltuielile_apartament(lista):
     """
     try:
         numar_apartament = input("Dati numarul apartamentului pentru care doriti sa stergeti toate cheltuielile: ")
-        print("Stergerea a fost efectuata cu succes !")
         return sterge_toate_cheltuielile_apartament(numar_apartament, lista)
     except ValueError as ve:
         print(f"Eroare: {ve}")

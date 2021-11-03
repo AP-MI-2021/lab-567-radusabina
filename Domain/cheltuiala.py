@@ -1,7 +1,7 @@
 def creeaza_cheltuiala(id, numar_apartament, suma, data, tipul):
     """
-    Creeaza un dictionar ce reprezinta o cheltuiala
-    :param id: id-ul cheltuielii
+    Creeaza o lista ce reprezinta o cheltuiala
+    :param id: id-ul cheltuielii (int)
     :param numar_apartament: string
     :param suma: float
     :param data: string

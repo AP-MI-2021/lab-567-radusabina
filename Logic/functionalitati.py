@@ -23,6 +23,8 @@ def adauga_valoare_data(data, valoare, lista):
     :param lista: lista de cheltuieli
     :return: lista in care cheltuielile cu data introdusa au valoarea adaugata sumei
     """
+    if valoare < 0:
+        raise ValueError("Nu se poate adauga o valoare negativa !")
     rezultat = []
     for cheltuiala in lista:
         if get_data(cheltuiala) == data:
