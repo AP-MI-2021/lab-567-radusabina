@@ -6,7 +6,7 @@ def print_meniu():
     print("Comenzile introduse trebuie separate prin ;, acestea putand fi: \n"
           "Adaugare: add,id,numar apartament,suma,data,tipul \n"
           "Stergere: delete,id-ul cheltuielii de sters \n"
-          "Afisare: showall \n "
+          "Afisare: showall \n"
           "Atentie !!! Comenzile trebuie introduse exact ca in modelul de mai sus !")
 
 

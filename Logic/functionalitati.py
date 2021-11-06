@@ -15,7 +15,7 @@ def sterge_toate_cheltuielile_apartament(numar_aparatament, lista):
     return rezultat
 
 
-def adauga_valoare_data(data, valoare, lista):
+def adauga_valoare_data(data_string, valoare, lista):
     """
     Adunarea unei valori la toate cheltuielile dintr-o dată citită.
     :param valoare: valoarea care se adauga sumei
@@ -27,7 +27,7 @@ def adauga_valoare_data(data, valoare, lista):
         raise ValueError("Nu se poate adauga o valoare negativa !")
     rezultat = []
     for cheltuiala in lista:
-        if get_data(cheltuiala) == data:
+        if get_data(cheltuiala) == data_string:
             cheltuiala_noua = creeaza_cheltuiala(get_id(cheltuiala), get_numar_apartament(cheltuiala),
                                                  float(get_suma(cheltuiala)) + valoare, get_data(cheltuiala),
                                                  get_tipul(cheltuiala))
@@ -62,3 +62,11 @@ def ordonare_descrescator_cheltuieli_dupa_suma(lista):
     :return: lista de cheltuieli ordoonata descrescator dupa suma
     """
     return sorted(lista, key=lambda cheltuiala: get_suma(cheltuiala), reverse=True)
+
+
+def suma_lunara_apartament(lista):
+    """
+
+    :param lista:
+    :return:
+    """

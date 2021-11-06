@@ -1,10 +1,12 @@
+import datetime
+
 def creeaza_cheltuiala(id, numar_apartament, suma, data, tipul):
     """
     Creeaza o lista ce reprezinta o cheltuiala
     :param id: id-ul cheltuielii (int)
     :param numar_apartament: string
     :param suma: float
-    :param data: string
+    :param data: date
     :param tipul: string
     :return: o lista ce contine o cheltuiala
     """

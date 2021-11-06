@@ -1,3 +1,5 @@
+import datetime
+
 from Domain.cheltuiala import to_string
 from Logic.CRUD import adauga_cheltuiala, sterge_cheltuiala, modifica_cheltuiala
 from Logic.functionalitati import sterge_toate_cheltuielile_apartament, adauga_valoare_data, \
@@ -29,14 +31,17 @@ def ui_adauga_cheltuiala(lista):
     """
     try:
         id = int(input("Dati id-ul cheltuielii: "))
-        numar_apartament = input("Dati numarul apartamentului: ")
+        numar_apartament = int(input("Dati numarul apartamentului: "))
         suma = float(input("Dati suma: "))
-        data = input("Dati data (DD.MM.YYYY): ")
+        data = datetime.datetime.strptime(input("Dati data (DD.MM.YYYY): "), "%d.%m.%Y")
+        data_string = datetime.datetime.strftime(data, "%d.%m.%Y")
         tipul = input("Dati tipul (intretinere, canal, alte cheltuieli): ")
-        return adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista)
+        return adauga_cheltuiala(id, numar_apartament, suma, data_string, tipul, lista)
     except ValueError as ve:
         print(f"Eroare : {ve}")
         return lista
+    except TypeError as te:
+        print(f"Eroare: {te}")
 
 
 def ui_sterge_cheltuiala(lista):
@@ -64,9 +69,10 @@ def ui_modifica_cheltuiala(lista):
         id = int(input("Dati id-ul cheltuielii de modificat: "))
         numar_apartament = input("Dati noul numar de apartament: ")
         suma = float(input("Dati noua suma: "))
-        data = input("Dati noua data (DD.MM.YYYY): ")
+        data = datetime.datetime.strptime(input("Dati noua data (DD.MM.YYYY): "), "%d.%m.%Y")
+        data_string = datetime.datetime.strftime(data, "%d.%m.%Y")
         tipul = input("Dati noul tip: ")
-        return modifica_cheltuiala(id, numar_apartament, suma, data, tipul, lista)
+        return modifica_cheltuiala(id, numar_apartament, suma, data_string, tipul, lista)
     except ValueError as ve:
         print(f"Eroare : {ve}")
         return lista
@@ -89,7 +95,7 @@ def ui_sterge_toate_cheltuielile_apartament(lista):
     :return: lista fara cheltuielile pentru apartamentul specificat
     """
     try:
-        numar_apartament = input("Dati numarul apartamentului pentru care doriti sa stergeti toate cheltuielile: ")
+        numar_apartament = int(input("Dati numarul apartamentului pentru care doriti sa stergeti toate cheltuielile: "))
         return sterge_toate_cheltuielile_apartament(numar_apartament, lista)
     except ValueError as ve:
         print(f"Eroare: {ve}")
@@ -104,9 +110,10 @@ def ui_adauga_valoare_data(lista):
     (s-a adaugat valoare introdusa la toate cheltuielile din data introdusa)
     """
     try:
-        data = input("Introduceti data la care doriti sa adaugati valoarea: ")
+        data = datetime.datetime.strptime(input("Introduceti data la care doriti sa adaugati valoarea: "), "%d.%m.%Y")
+        data_string = datetime.datetime.strftime(data, "%d.%m.%Y")
         valoare = float(input("Introduceti valoarea pe care doriti sa o adaugati: "))
-        return adauga_valoare_data(data, valoare, lista)
+        return adauga_valoare_data(data_string, valoare, lista)
     except ValueError as ve:
         print(f"Eroare: {ve}")
         return lista
@@ -123,7 +130,7 @@ def ui_cea_mai_mare_cheltuiala_dupa_tip(lista):
         return lista
     rezultat = cea_mai_mare_cheltuiala_dupa_tip(lista)
     for tip in rezultat:
-        print(f"Tipul {tip} are cheltuiala cu valoarea maxima: {rezultat[tip]}")
+        print(f"Tipul {tip} are cheltuiala cu valoarea maxima: {to_string(rezultat[tip])}")
 
 
 def ui_ordonare_descrescator_cheltuieli_dupa_suma(lista):
