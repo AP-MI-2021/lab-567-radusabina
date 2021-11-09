@@ -1,9 +1,11 @@
 from Domain.cheltuiala import creeaza_cheltuiala, get_numar_apartament, get_id
 
 
-def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
+def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista, undo_list=None, redo_list=None):
     """
     Adauga o cheltuiala intr-o lista
+    :param redo_list: lista pentru redo care e resetata
+    :param undo_list: lista pentru undo care salveaza starea listei inainte de adaugare
     :param lista: lista de cheltuieli
     :param id: int
     :param numar_apartament: string
@@ -16,6 +18,9 @@ def adauga_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
         raise ValueError("Id-ul exista deja !")
     if tipul not in ["intretinere", "canal", "alte cheltuieli"]:
         raise ValueError("Tipul cheltuielii trebuie sa fie intretinere / canal / alte cheltuieli")
+    if undo_list is not None and redo_list is not None:
+        undo_list.append(lista)
+        redo_list.clear()
     cheltuiala = creeaza_cheltuiala(id, numar_apartament, suma, data, tipul)
     return lista + [cheltuiala]
 
@@ -47,15 +52,20 @@ def get_by_numar_apartament(numar_apartament, lista):
     return lista_noua
 
 
-def sterge_cheltuiala(id, lista):
+def sterge_cheltuiala(id, lista, undo_list=None, redo_list=None):
     """
     Sterge un apartament cu id-ul dat
+    :param redo_list: lista pentru redo care e resetata
+    :param undo_list: lista pentru undo care salveaza starea listei inainte de stergere
     :param id: id-ul apartamentului care se va sterge
     :param lista: lista de cheltuieli
     :return: o lista de cheltuieli fara cheltuiala care are numarul apartamentului dat
     """
     if get_by_id(id, lista) is None:
         raise ValueError("Nu exista o cheltuiala cu id-ul dat !")
+    if undo_list is not None and redo_list is not None:
+        undo_list.append(lista)
+        redo_list.clear()
     rezultat = []
     for cheltuiala in lista:
         if get_id(cheltuiala) != id:
@@ -63,9 +73,11 @@ def sterge_cheltuiala(id, lista):
     return rezultat
 
 
-def modifica_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
+def modifica_cheltuiala(id, numar_apartament, suma, data, tipul, lista,  undo_list=None, redo_list=None):
     """
     Modifica o cheltuiala cu id-ul dat
+    :param redo_list: lista pentru redo care e resetata
+    :param undo_list: lista pentru undo care salveaza lista inainte de modificare
     :param id: id-ul cheltuielii
     :param numar_apartament: numarul de apartament al cheltuielii
     :param suma: suma cheltuielii
@@ -76,6 +88,9 @@ def modifica_cheltuiala(id, numar_apartament, suma, data, tipul, lista):
     """
     if get_by_id(id, lista) is None:
         raise ValueError("Nu exista o cheltuiala cu id-ul dat !")
+    if undo_list is not None and redo_list is not None:
+        undo_list.append(lista)
+        redo_list.clear()
     lista_noua = []
     for cheltuiala in lista:
         if get_id(cheltuiala) == id:
