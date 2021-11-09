@@ -9,7 +9,6 @@ Scrieți un program pentru gestionarea unei asociații de proprietari. Vor fi su
 1.6. Afișarea sumelor lunare pentru fiecare apartament.
 1.7. Undo.
 """
-from Logic.CRUD import adauga_cheltuiala
 from Tests.test_all import test_all
 from UI.console import run_menu
 from UI.console_line_command import run_new_menu
@@ -31,6 +30,7 @@ def main():
             break
         else:
             print("Optiune gresita ! Reincercati ")
+
 
 if __name__ == "__main__":
     main()
