@@ -1,5 +1,3 @@
-import datetime
-
 def creeaza_cheltuiala(id, numar_apartament, suma, data, tipul):
     """
     Creeaza o lista ce reprezinta o cheltuiala

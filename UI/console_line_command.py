@@ -19,7 +19,6 @@ def run_new_menu(lista):
             if com[0] == "add":
                 try:
                     lista = adauga_cheltuiala(com[1], com[2], com[3], com[4], com[5], lista)
-                    i
                 except Exception as e:
                     print(f"Eroare: {e}")
             elif com[0] == "delete":
